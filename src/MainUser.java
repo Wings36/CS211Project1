@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainUser {
@@ -18,30 +19,33 @@ public class MainUser {
         //Finding Inheritance of the person
 
         Scanner file = new Scanner(personFile);
+        ArrayList<Person> temp = new ArrayList<>();
 
         while(file.hasNext()) {
             String personRead = file.nextLine();
-            int index;
-            //End file detector
             if (personRead.equals(keyword))
                 break;
-            //implement arraylist
-            //scan arraylist to find the person
-            for (int x :) {
-                if (personRead.equals()) {
-                    index = x;
-                    break;
+
+            //replace temp with the People Array
+            //scan arraylist to find the person.
+            for (Person personMain : temp) {
+                if (personMain.getName().equals(personRead)) {
+
+                    for (int x = 0; x < 2 ; x++) {
+                        personRead = file.nextLine();
+                        for (Person parent : temp) {
+                            if (parent.getName().equals(personRead)) {
+                                if (x == 0)
+                                    personMain.setMother(parent);
+                                else
+                                    personMain.setFather(parent);
+                            }
+                        }
+                    }
                 }
             }
-
-            //Add in mother
-            personRead = file.nextLine();
-
-            //Add in father
-            personRead = file.nextLine();
-
-
         }
-
     }
 }
+
+
