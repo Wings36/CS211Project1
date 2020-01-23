@@ -18,6 +18,8 @@ public class MainUser {
         // Read each line
         while (input.hasNextLine()) {
             String line = input.nextLine();
+            if (line.equals(keyword))
+                break;
             Person p = new Person(line);
             people.add(p);
         }
@@ -56,7 +58,7 @@ public class MainUser {
                 }
             }
         }
-        System.out.println(people.get(1).getFather());
+        //System.out.println(people.get(1).getFather());
     }
 }
 
