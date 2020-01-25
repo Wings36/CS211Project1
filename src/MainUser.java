@@ -52,13 +52,14 @@ public class MainUser {
                                     personMain.setMother(parent);
                                 else
                                     personMain.setFather(parent);
+                                parent.addChildren(personMain);
                             }
                         }
                     }
                 }
             }
         }
-        //System.out.println(people.get(1).getFather());
+        System.out.println(people.get(1).getFather());
     }
 }
 
