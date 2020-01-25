@@ -59,7 +59,7 @@ public class MainUser {
                 }
             }
         }
-        System.out.println(people.get(1).getFather());
+        //System.out.println(people.get(1).getFather());
     }
 }
 
