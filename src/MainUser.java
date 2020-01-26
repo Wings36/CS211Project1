@@ -64,6 +64,8 @@ public class MainUser {
         //System.out.println(people.get(1).getFather());
     }
     //Method to search the person arraylist for the person the user asked for
+    //Method takes in the user provided name and list of names as parameters
+    //Method returns the index number of the name provided
     public static int searchList(String person, ArrayList<String> list) {
         String result = "";
         int indexNum = 0;
