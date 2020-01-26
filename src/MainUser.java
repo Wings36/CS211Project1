@@ -64,15 +64,16 @@ public class MainUser {
         //System.out.println(people.get(1).getFather());
     }
     //Method to search the person arraylist for the person the user asked for
-    public static String searchList(String person, ArrayList<String> list) {
+    public static int searchList(String person, ArrayList<String> list) {
         String result = "";
+        int indexNum = 0;
         for(int i = 0; i < list.size(); i++) {
             result = list.get(i);
             if(result.contains(person)) {
-                return result;
+                indexNum = i;
             }
         }
-        return null;
+        return indexNum;
     }
 }
 
