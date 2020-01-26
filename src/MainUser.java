@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 public class MainUser {
 
+    private static Object s;
+
     public static void main(String[] args) throws FileNotFoundException {
 
         final String keyword = "END";
@@ -60,6 +62,17 @@ public class MainUser {
             }
         }
         //System.out.println(people.get(1).getFather());
+    }
+    //Method to search the person arraylist for the person the user asked for
+    public static String searchList(String person, ArrayList<String> list) {
+        String result = "";
+        for(int i = 0; i < list.size(); i++) {
+            result = list.get(i);
+            if(result.contains(person)) {
+                return result;
+            }
+        }
+        return null;
     }
 }
 
