@@ -66,8 +66,8 @@ public class MainUser {
     //User interface
     public static void output(List<Person> list) {
         ArrayList<String> people=new ArrayList<>();
-        for(int i=list.size()-1;i<=0;i--) {
-            people.add(list.get(i).getName());
+        for(Person input : list) {
+            people.add(input.getName());
         }
         Scanner console = new Scanner(System.in);
         System.out.println("Person's name?");
