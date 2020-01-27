@@ -40,8 +40,6 @@ public class MainUser {
             String personRead = input.nextLine();
             if (personRead.equals(keyword))
                 break;
-
-            //replace temp with the People Array
             //scan arraylist to find the person.
             for (Person personMain : people) {
                 if (personMain.getName().equals(personRead)) {
@@ -60,8 +58,8 @@ public class MainUser {
                 }
             }
         }
+
         output(people);
-        //System.out.println(people.get(1).getFather());
     }
     //User interface
     public static void output(List<Person> list) {
@@ -116,9 +114,10 @@ public class MainUser {
     //Method returns the index number of the name provided
     public static int searchList(String person, List<Person> list) {
         String result = "";
+        String input = person.toLowerCase();
         int indexNum = -1;
         for(int i = 0; i < list.size(); i++) {
-            result = list.get(i).getName();
+            result = list.get(i).getName().toLowerCase();
             if(result.contains(person)) {
                 indexNum = i;
             }
