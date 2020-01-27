@@ -68,46 +68,48 @@ public class MainUser {
         Scanner console = new Scanner(System.in);
         System.out.println("Person's name?");
         String input = console.next();
-        Person p=list.get(searchList(input,list));
-        if(p==null){
-            System.out.println("I cannot find this name in the list.");
+        int num=searchList(input,list);
+        while(num==-1){
+            System.out.println("Sorry! I cannot find this name in the list. Please type again.");
+            input = console.next();
+            num=searchList(input,list);
         }
-        else{
-            int count=1;
-            Person temp=p;
+        if(num!=-1) {
+            Person p = list.get(num);
+            int count = 1;
+            Person temp = p;
             System.out.println("Maternal line: ");
-            System.out.println("    "+p.getName());
-            while(temp.getFather()!=null){
-                for(int i=0;i<=count;i++){
+            System.out.println("    " + p.getName());
+            while (temp.getFather() != null) {
+                for (int i = 0; i <= count; i++) {
                     System.out.print("    ");
                 }
                 System.out.print(temp.getFather().getName());
                 System.out.println();
-                temp=temp.getFather();
+                temp = temp.getFather();
                 count++;
             }
-            temp=p;
-            count=1;
+            temp = p;
+            count = 1;
             System.out.println("Paternal line: ");
-            System.out.println("    "+p.getName());
-            while(temp.getMother()!=null){
-                for(int i=0;i<=count;i++){
+            System.out.println("    " + p.getName());
+            while (temp.getMother() != null) {
+                for (int i = 0; i <= count; i++) {
                     System.out.print("    ");
                 }
                 System.out.print(temp.getMother().getName());
                 System.out.println();
-                temp=temp.getMother();
+                temp = temp.getMother();
                 count++;
             }
-            temp=p;
-            count=1;
+            temp = p;
+            count = 1;
             System.out.println("Children: ");
-            for(int i=p.getChildren().size()-1;i>=0;i--){
-                String child=p.getChildren().get(i).getName();
-                System.out.println("    "+child);
+            for (int i = p.getChildren().size() - 1; i >= 0; i--) {
+                String child = p.getChildren().get(i).getName();
+                System.out.println("    " + child);
             }
         }
-
     }
     //Method to search the person arraylist for the person the user asked for
     //Method takes in the user provided name and list of names as parameters
