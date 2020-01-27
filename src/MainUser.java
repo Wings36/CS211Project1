@@ -64,48 +64,57 @@ public class MainUser {
     //User interface
     public static void output(List<Person> list) {
         Scanner console = new Scanner(System.in);
-        System.out.println("Person's name?");
-        String input = console.next();
-        int num=searchList(input,list);
-        while(num==-1){
-            System.out.println("Sorry! I cannot find this name in the list. Please type again.");
-            input = console.next();
-            num=searchList(input,list);
-        }
-        if(num!=-1) {
-            Person p = list.get(num);
-            int count = 1;
-            Person temp = p;
-            System.out.println("Maternal line: ");
-            System.out.println("    " + p.getName());
-            while (temp.getFather() != null) {
-                for (int i = 0; i <= count; i++) {
-                    System.out.print("    ");
-                }
-                System.out.print(temp.getFather().getName());
-                System.out.println();
-                temp = temp.getFather();
-                count++;
+        boolean loop = true;
+        while (loop) {
+            System.out.println("Person's name? or type exit to exit:");
+            String input = console.next().toLowerCase();
+            if (input.equals("exit")) {
+                loop = false;
+                break;
             }
-            temp = p;
-            count = 1;
-            System.out.println("Paternal line: ");
-            System.out.println("    " + p.getName());
-            while (temp.getMother() != null) {
-                for (int i = 0; i <= count; i++) {
-                    System.out.print("    ");
+            else {
+                int num = searchList(input, list);
+                while (num == -1) {
+                    System.out.println("Sorry! I cannot find this name in the list. Please type again.");
+                    input = console.next();
+                    num = searchList(input, list);
                 }
-                System.out.print(temp.getMother().getName());
-                System.out.println();
-                temp = temp.getMother();
-                count++;
-            }
-            temp = p;
-            count = 1;
-            System.out.println("Children: ");
-            for (int i = p.getChildren().size() - 1; i >= 0; i--) {
-                String child = p.getChildren().get(i).getName();
-                System.out.println("    " + child);
+                if (num != -1) {
+                    Person p = list.get(num);
+                    int count = 1;
+                    Person temp = p;
+                    System.out.println("Maternal line: ");
+                    System.out.println("    " + p.getName());
+                    while (temp.getFather() != null) {
+                        for (int i = 0; i <= count; i++) {
+                            System.out.print("    ");
+                        }
+                        System.out.print(temp.getFather().getName());
+                        System.out.println();
+                        temp = temp.getFather();
+                        count++;
+                    }
+                    temp = p;
+                    count = 1;
+                    System.out.println("Paternal line: ");
+                    System.out.println("    " + p.getName());
+                    while (temp.getMother() != null) {
+                        for (int i = 0; i <= count; i++) {
+                            System.out.print("    ");
+                        }
+                        System.out.print(temp.getMother().getName());
+                        System.out.println();
+                        temp = temp.getMother();
+                        count++;
+                    }
+                    temp = p;
+                    count = 1;
+                    System.out.println("Children: ");
+                    for (int i = p.getChildren().size() - 1; i >= 0; i--) {
+                        String child = p.getChildren().get(i).getName();
+                        System.out.println("    " + child);
+                    }
+                }
             }
         }
     }
