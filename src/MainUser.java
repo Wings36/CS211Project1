@@ -26,10 +26,9 @@ public class MainUser {
             people.add(p);
         }
 
-        for (Person p: people) {
+        for (Person p : people) {
             System.out.println(p.getName());
         }
-
 
 
         //Finding Inheritance of the person
@@ -37,7 +36,7 @@ public class MainUser {
 
         ArrayList<Person> temp = new ArrayList<>();
 
-        while(input.hasNext()) {
+        while (input.hasNext()) {
             String personRead = input.nextLine();
             if (personRead.equals(keyword))
                 break;
@@ -46,7 +45,7 @@ public class MainUser {
             //scan arraylist to find the person.
             for (Person personMain : people) {
                 if (personMain.getName().equals(personRead)) {
-                    for (int x = 0; x < 2 ; x++) {
+                    for (int x = 0; x < 2; x++) {
                         personRead = input.nextLine();
                         for (Person parent : people) {
                             if (parent.getName().equals(personRead)) {
@@ -61,7 +60,54 @@ public class MainUser {
                 }
             }
         }
+        output(people);
         //System.out.println(people.get(1).getFather());
+    }
+    //User interface
+    public static void output(List<Person> list) {
+        ArrayList<String> people=new ArrayList<>();
+        for(Person input : list) {
+            people.add(input.getName());
+        }
+        Scanner console = new Scanner(System.in);
+        System.out.println("Person's name?");
+        String input = console.next();
+        Person p=list.get(searchList(input, people));
+        if(p==null){
+            System.out.println("I cannot find this name in the list.");
+        }
+        else{
+            int count=0;
+            Person temp=p;
+            System.out.println("Maternal line: ");
+            System.out.println("    "+p.getName());
+            while(temp.getFather()!=null){
+                for(int i=0;i<=count;i++){
+                    System.out.print("    ");
+                }
+                System.out.print(temp.getFather().getName());
+                System.out.println();
+                temp=temp.getFather();
+            }
+            temp=p;
+            System.out.println("Paternal line: ");
+            System.out.println("    "+p.getName());
+            while(temp.getMother()!=null){
+                for(int i=0;i<=count;i++){
+                    System.out.print("    ");
+                }
+                System.out.print(temp.getMother().getName());
+                System.out.println();
+                temp=temp.getMother();
+            }
+            temp=p;
+            System.out.println("Children: ");
+            for(int i=p.getChildren().size()-1;i>=0;i--){
+                String child=p.getChildren().get(i).getName();
+                System.out.println("    "+child);
+            }
+        }
+
     }
     //Method to search the person arraylist for the person the user asked for
     //Method takes in the user provided name and list of names as parameters
