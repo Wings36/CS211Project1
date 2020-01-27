@@ -65,19 +65,15 @@ public class MainUser {
     }
     //User interface
     public static void output(List<Person> list) {
-        ArrayList<String> people=new ArrayList<>();
-        for(Person input : list) {
-            people.add(input.getName());
-        }
         Scanner console = new Scanner(System.in);
         System.out.println("Person's name?");
         String input = console.next();
-        Person p=list.get(searchList(input, people));
+        Person p=list.get(searchList(input,list));
         if(p==null){
             System.out.println("I cannot find this name in the list.");
         }
         else{
-            int count=0;
+            int count=1;
             Person temp=p;
             System.out.println("Maternal line: ");
             System.out.println("    "+p.getName());
@@ -88,8 +84,10 @@ public class MainUser {
                 System.out.print(temp.getFather().getName());
                 System.out.println();
                 temp=temp.getFather();
+                count++;
             }
             temp=p;
+            count=1;
             System.out.println("Paternal line: ");
             System.out.println("    "+p.getName());
             while(temp.getMother()!=null){
@@ -99,8 +97,10 @@ public class MainUser {
                 System.out.print(temp.getMother().getName());
                 System.out.println();
                 temp=temp.getMother();
+                count++;
             }
             temp=p;
+            count=1;
             System.out.println("Children: ");
             for(int i=p.getChildren().size()-1;i>=0;i--){
                 String child=p.getChildren().get(i).getName();
@@ -112,7 +112,7 @@ public class MainUser {
     //Method to search the person arraylist for the person the user asked for
     //Method takes in the user provided name and list of names as parameters
     //Method returns the index number of the name provided
-    public static int searchList(String person, ArrayList<Person> list) {
+    public static int searchList(String person, List<Person> list) {
         String result = "";
         int indexNum = 0;
         for(int i = 0; i < list.size(); i++) {
