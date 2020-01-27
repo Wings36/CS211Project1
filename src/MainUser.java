@@ -66,11 +66,11 @@ public class MainUser {
     //Method to search the person arraylist for the person the user asked for
     //Method takes in the user provided name and list of names as parameters
     //Method returns the index number of the name provided
-    public static int searchList(String person, ArrayList<String> list) {
+    public static int searchList(String person, ArrayList<Person> list) {
         String result = "";
         int indexNum = 0;
         for(int i = 0; i < list.size(); i++) {
-            result = list.get(i);
+            result = list.get(i).getName();
             if(result.contains(person)) {
                 indexNum = i;
             }
