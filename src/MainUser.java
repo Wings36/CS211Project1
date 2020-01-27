@@ -114,7 +114,7 @@ public class MainUser {
     //Method returns the index number of the name provided
     public static int searchList(String person, List<Person> list) {
         String result = "";
-        int indexNum = 0;
+        int indexNum = -1;
         for(int i = 0; i < list.size(); i++) {
             result = list.get(i).getName();
             if(result.contains(person)) {
