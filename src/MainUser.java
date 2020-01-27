@@ -65,42 +65,49 @@ public class MainUser {
     }
     //User interface
     public static void output(List<Person> list) {
-        Person p=inputdata(list);
+        ArrayList<String> people=new ArrayList<>();
+        for(int i=list.size()-1;i<=0;i--) {
+            people.add(list.get(i).getName());
+        }
+        Scanner console = new Scanner(System.in);
+        System.out.println("Person's name?");
+        String input = console.next();
+        Person p=list.get(searchList(input, people));
         if(p==null){
             System.out.println("I cannot find this name in the list.");
         }
         else{
+            int count=0;
+            Person temp=p;
             System.out.println("Maternal line: ");
             System.out.println("    "+p.getName());
-            System.out.println("        "+p.getMother().getName());
+            while(temp.getFather()!=null){
+                for(int i=0;i<=count;i++){
+                    System.out.print("    ");
+                }
+                System.out.print(temp.getFather().getName());
+                System.out.println();
+                temp=temp.getFather();
+            }
+            temp=p;
             System.out.println("Paternal line: ");
             System.out.println("    "+p.getName());
-            System.out.println("        "+p.getFather().getName());
+            while(temp.getMother()!=null){
+                for(int i=0;i<=count;i++){
+                    System.out.print("    ");
+                }
+                System.out.print(temp.getMother().getName());
+                System.out.println();
+                temp=temp.getMother();
+            }
+            temp=p;
             System.out.println("Children: ");
             for(int i=p.getChildren().size()-1;i>=0;i--){
                 String child=p.getChildren().get(i).getName();
-                System.out.println(child);
+                System.out.println("    "+child);
             }
         }
 
-    }
-    public static Person inputdata(List<Person> list){
-        Scanner console = new Scanner(System.in);
-        System.out.println("Person's name?");
-        String input = console.next();
-        Person p=searchList1(input, list);
-        return p;
-    }
-    public static Person searchList1(String person, List<Person> list) {
-        String result = "";
-        Person p = null;
-        for(int i = 0; i < list.size(); i++) {
-            result = list.get(i).getName();
-            if(result.contains(person)) {
-                p=list.get(i);
-            }
-        }
-        return p;
     }
     //Method to search the person arraylist for the person the user asked for
     //Method takes in the user provided name and list of names as parameters
